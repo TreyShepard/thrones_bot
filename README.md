@@ -23,7 +23,7 @@ discord-bot/
 
 1. Clone the repository on server
 
-   git clone https://github.com/your-org/thrones-bot.git
+   git clone https://github.com/TreyShepard/thrones-bot.git
    cd thrones-bot
 
 2. Install dependencies
