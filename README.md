@@ -13,15 +13,15 @@ A custom Discord bot built using `discord.js` to support clan management, event 
 ## Project Structure
 
 discord-bot/
-├── commands/             - Individual commands (e.g., .ping, .bingo)
-├── events/               - Discord event handlers (e.g., user join, message)
-├── data/                 - Static content like calendar, history, etc.
-├── .env                  - Token config (not committed to repo)
-├── index.js              - Entry point and wiring logic
+ ─ commands/             - Individual commands (e.g., .ping, .bingo)
+ ─ events/               - Discord event handlers (e.g., user join, message)
+ ─ data/                 - Static content like calendar, history, etc.
+ ─ .env                  - Token config (not committed to repo)
+ ─ index.js              - Entry point and wiring logic
 
 ## Getting Started
 
-1. Clone the repository
+1. Clone the repository on server
 
    git clone https://github.com/your-org/thrones-bot.git
    cd thrones-bot
@@ -65,7 +65,7 @@ The bot should reply with:
 ## Next Steps
 
 - Add commands to `commands/`
-- Add logic to `events/` for onboarding and reactions
+- Add logic to `events/` for onboarding and reactions to discord activity
 - Store static clan info in `data/`
 
 ## License
