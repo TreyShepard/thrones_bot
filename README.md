@@ -67,6 +67,7 @@ The bot should reply with:
 - Add commands to `commands/`
 - Add logic to `events/` for onboarding and reactions to discord activity
 - Store static clan info in `data/`
+ - This partition could easily be an efs system in future state.
 
 ## License
 
