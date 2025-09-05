@@ -7,7 +7,7 @@
 // Load environment variables from .env file (for storing sensitive info)
 require('dotenv').config();
 
-const { Client, GatewayIntentBits, Collection } = require('discord.js');
+const { Client, GatewayIntentBits, Collection, Partials } = require('discord.js');
 const fs = require('fs'); 
 const path = require('path');
 
@@ -19,6 +19,13 @@ const client = new Client({
     GatewayIntentBits.GuildMessages, // Access to messages in guilds
     GatewayIntentBits.GuildMembers,  // Access to guild member information
     GatewayIntentBits.MessageContent, // Access to message content (required for reading messages)
+    GatewayIntentBits.GuildMessageReactions
+  ],
+  partials: [
+    Partials.Message,
+    Partials.Channel,
+    Partials.Reaction,
+    Partials.User
   ]
 });
 
@@ -41,7 +48,12 @@ const eventFiles = fs.readdirSync(path.join(__dirname, 'events')).filter(file =>
 for (const file of eventFiles) {
   const event = require(`./events/${file}`);
   const eventName = path.parse(file).name;
-  client.on(eventName, event.bind(null, client));
+  console.log(`Loading event: ${file}, typeof export: ${typeof event}`);
+  if (typeof event === 'function') {
+    client.on(eventName, (...args) => event(client, ...args));
+  } else {
+    console.warn(`Event file ${file} does not export a function and was skipped.`);
+  }
 }
 
 // Login to Discord using the bot token from environment variables (in .env file)
