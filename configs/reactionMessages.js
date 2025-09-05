@@ -1,0 +1,3 @@
+module.exports = {
+  ROLE_REACTION_MESSAGE_ID: '1413510596544041181'
+};
