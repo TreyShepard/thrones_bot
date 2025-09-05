@@ -40,10 +40,8 @@ for (const file of commandFiles) {
 const eventFiles = fs.readdirSync(path.join(__dirname, 'events')).filter(file => file.endsWith('.js'));
 for (const file of eventFiles) {
   const event = require(`./events/${file}`);
-  // Extract the event name from the filename (e.g., 'ready.js' becomes 'ready')
   const eventName = path.parse(file).name;
-  // Register the event handler with the client
-  client.on(eventName, (...args) => event(client, ...args));
+  client.on(eventName, event.bind(null, client));
 }
 
 // Login to Discord using the bot token from environment variables (in .env file)
