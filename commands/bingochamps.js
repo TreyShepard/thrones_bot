@@ -99,6 +99,13 @@ module.exports = {
   execute(message, args) {
     // Emojis for medals
     const medals = ["🥇", "🥈", "🥉", "🏅"];
+
+    // Special case for Papalotee
+    if (message.author.username === 'papalote4465') {
+      message.channel.send("What a surprise, Papalotee tried the bingochamps command. He sees a bingo tile, complains, then goes there and spoons it. That fker.");
+      return;
+    }
+
     if (args[0] && args[0].toLowerCase() === "info") {
       // Info argument: return the tracking sheet URL
       return message.channel.send(
