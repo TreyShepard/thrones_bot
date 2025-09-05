@@ -40,7 +40,7 @@ for (const file of commandFiles) {
 const eventFiles = fs.readdirSync(path.join(__dirname, 'events')).filter(file => file.endsWith('.js'));
 for (const file of eventFiles) {
   const event = require(`./events/${file}`);
-  const eventName = file.split('.')[0];
+  const eventName = path.parse(file).name;
   client.on(eventName, event.bind(null, client));
 }
 
