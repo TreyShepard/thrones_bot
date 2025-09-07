@@ -8,8 +8,7 @@ module.exports = {
     const member = interaction.member;
     if (
       !member.roles.cache.has(QUEENS_ROLE_ID) &&
-      !member.roles.cache.has(SMALL_COUNCIL_ROLE_ID) &&
-      !member.roles.cache.has(DEFENDER_ROLE_ID)
+      !member.roles.cache.has(SMALL_COUNCIL_ROLE_ID)
     ) {
       return interaction.reply({ content: "You do not have permission to use this command.", flags: 1 << 6  });
     }
