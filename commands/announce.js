@@ -4,7 +4,7 @@ module.exports = {
   name: "announce",
   description: "Sends an announcement to the specified channel.",
   async execute(interaction) {
-    // Permission check
+    // Permission check - enforces that the calling member has the Queens or Small Council role
     const member = interaction.member;
     if (
       !member.roles.cache.has(QUEENS_ROLE_ID) &&
