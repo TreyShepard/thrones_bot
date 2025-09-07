@@ -8,9 +8,10 @@ module.exports = {
     const member = interaction.member;
     if (
       !member.roles.cache.has(QUEENS_ROLE_ID) &&
-      !member.roles.cache.has(SMALL_COUNCIL_ROLE_ID)
+      !member.roles.cache.has(SMALL_COUNCIL_ROLE_ID) &&
+      !member.roles.cache.has(DEFENDER_ROLE_ID)
     ) {
-      return interaction.reply({ content: "You do not have permission to use this command.", ephemeral: true });
+      return interaction.reply({ content: "You do not have permission to use this command.", flags: 1 << 6  });
     }
 
     // Get options from slash command
@@ -18,14 +19,14 @@ module.exports = {
     const announcement = interaction.options.getString('message');
 
     if (!targetChannel) {
-      return interaction.reply({ content: 'Please mention a valid channel.', ephemeral: true });
+      return interaction.reply({ content: 'Please mention a valid channel.', flags: 1 << 6 });
     }
     if (!announcement) {
-      return interaction.reply({ content: 'Please provide an announcement message.', ephemeral: true });
+      return interaction.reply({ content: 'Please provide an announcement message.', flags: 1 << 6 });
     }
 
     // Send the announcement
     await targetChannel.send(`${announcement}`);
-    await interaction.reply({ content: `Announcement sent to ${targetChannel}!`, ephemeral: true });
+    await interaction.reply({ content: `Announcement sent to ${targetChannel}!`, flags: 1 << 6 });
   },
 };
