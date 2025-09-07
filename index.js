@@ -56,6 +56,21 @@ for (const file of eventFiles) {
   }
 }
 
+// Handle slash commands (interactions)
+client.on('interactionCreate', async interaction => {
+  if (!interaction.isChatInputCommand()) return;
+
+  const command = client.commands.get(interaction.commandName);
+  if (!command) return;
+
+  try {
+    await command.execute(interaction);
+  } catch (error) {
+    console.error(error);
+    await interaction.reply({ content: 'There was an error executing that command.', ephemeral: true });
+  }
+});
+
 // Login to Discord using the bot token from environment variables (in .env file)
 // This establishes the connection and brings the bot online
 client.login(process.env.DISCORD_TOKEN);

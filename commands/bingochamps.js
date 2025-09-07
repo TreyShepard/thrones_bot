@@ -96,27 +96,43 @@ const teams = [
 module.exports = {
   name: "bingochamps",
   description: "Displays Thrones V Bingo results.",
-  execute(message, args) {
-    // Emojis for medals
+  options: [
+    {
+      name: 'mode',
+      description: 'Choose "info" for tracking sheet, "all" for full details, or leave blank for summary.',
+      type: 3, // STRING
+      required: false,
+      choices: [
+        { name: 'info', value: 'info' },
+        { name: 'all', value: 'all' }
+      ]
+    }
+  ],
+  async execute(interaction) {
     const medals = ["🥇", "🥈", "🥉", "🏅"];
+    const mode = interaction.options.getString('mode');
+    const username = interaction.user.username;
 
     // Special case for Papalotee
-    if (message.author.username === 'papalote4465') {
-      message.channel.send("What a surprise, Papalotee tried the bingochamps command. He sees a bingo tile, complains, then goes there and spoons it. That fker.");
+    if (username === 'papalote4465') {
+      await interaction.reply("What a surprise, Papalotee tried the bingochamps command. He sees a bingo tile, complains, then goes there and spoons it. That fker.");
       return;
     }
 
-    if (args[0] && args[0].toLowerCase() === "info") {
+    if (mode === "info") {
       // Info argument: return the tracking sheet URL
-      return message.channel.send(
+      await interaction.reply(
         "Thrones V Bingo Tracking Sheet: https://docs.google.com/spreadsheets/d/11GBW5wqrjMHB9s0rW-FbHXuP0gdXVZZLj8jv89wCg88"
       );
+      return;
     }
-    if (args[0] && args[0].toLowerCase() === "all") {
+
+    if (mode === "all") {
       // Full details: send each team as a separate message
       const sorted = [...teams].sort((a, b) => b.total - a.total);
-      message.channel.send("**Thrones V Bingo - Full Standings**");
-      sorted.forEach((team, idx) => {
+      await interaction.reply("**Thrones V Bingo - Full Standings**");
+      for (let idx = 0; idx < sorted.length; idx++) {
+        const team = sorted[idx];
         const medal = medals[idx] || "🏅";
         let reply = `${medal} __**${team.name}**__  \`(${team.total} pts)\`\n`;
         reply += "```";
@@ -126,18 +142,19 @@ module.exports = {
             reply += `${m.name.padEnd(25)} ${m.points}\n`;
           });
         reply += "```";
-        message.channel.send(reply);
-      });
-    } else {
-      // Summary with Markdown and emojis
-      let reply = `**Thrones V Bingo - Team Standings**\n\n`;
-      const sorted = [...teams].sort((a, b) => b.total - a.total);
-      sorted.forEach((team, idx) => {
-        const medal = medals[idx] || "🏅";
-        reply += `${medal} __**${team.name}**__: **${team.total} pts**\n`;
-      });
-      message.channel.send(reply);
+        await interaction.followUp(reply);
+      }
+      return;
     }
+
+    // Summary with Markdown and emojis
+    let reply = `**Thrones V Bingo - Team Standings**\n\n`;
+    const sorted = [...teams].sort((a, b) => b.total - a.total);
+    sorted.forEach((team, idx) => {
+      const medal = medals[idx] || "🏅";
+      reply += `${medal} __**${team.name}**__: **${team.total} pts**\n`;
+    });
+    await interaction.reply(reply);
   },
 };
 
