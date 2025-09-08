@@ -7,13 +7,14 @@ module.exports = {
     const member = interaction.member;
     if (
       !member.roles.cache.has(QUEENS_ROLE_ID) &&
-      !member.roles.cache.has(SMALL_COUNCIL_ROLE_ID)
+      !member.roles.cache.has(SMALL_COUNCIL_ROLE_ID) &&
+      !member.roles.cache.has(DEFENDER_ROLE_ID)
     ) {
       return interaction.reply({ content: "You do not have permission to use this command.", flags: 1 << 6 });
     }
 
     const targetChannel = interaction.options.getChannel('channel');
-    const announcement = interaction.options.getString('message');
+    let announcement = interaction.options.getString('message');
     const photo = interaction.options.getAttachment('photo');
 
     if (!targetChannel) {
@@ -22,6 +23,9 @@ module.exports = {
     if (!announcement) {
       return interaction.reply({ content: 'Please provide an announcement message.', flags: 1 << 6 });
     }
+
+    // Replace \n with actual new lines
+    announcement = announcement.replace(/\\n/g, '\n');
 
     // Prepare message payload
     const payload = { content: announcement };
