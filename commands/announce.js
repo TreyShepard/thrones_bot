@@ -4,11 +4,11 @@ module.exports = {
   name: "announce",
   description: "Sends an announcement to the specified channel.",
   async execute(interaction) {
+    // Permission check - enforces that the calling member has the Queens or Small Council role
     const member = interaction.member;
     if (
       !member.roles.cache.has(QUEENS_ROLE_ID) &&
-      !member.roles.cache.has(SMALL_COUNCIL_ROLE_ID) &&
-      !member.roles.cache.has(DEFENDER_ROLE_ID)
+      !member.roles.cache.has(SMALL_COUNCIL_ROLE_ID)
     ) {
       return interaction.reply({ content: "You do not have permission to use this command.", flags: 1 << 6 });
     }
