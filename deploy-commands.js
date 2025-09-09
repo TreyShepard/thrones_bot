@@ -18,6 +18,12 @@ const commands = [
         type: 3, // STRING
         required: true,
       },
+      {
+        name: 'photo',
+        description: 'Attach a photo to the announcement',
+        type: 11, // ATTACHMENT
+        required: false,
+      },
     ],
   },
   {
