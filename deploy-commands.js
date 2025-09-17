@@ -46,6 +46,22 @@ const commands = [
     name: 'enabledrops',
     description: 'Enables drops for the server.',
   },
+    {
+    name: 'rnggods',
+    description: 'Ask the RNG gods a yes or no question.',
+    options: [
+      {
+        name: 'question',
+        description: 'Your yes or no question',
+        type: 3, // STRING
+        required: true,
+      },
+    ],
+  },
+  {
+    name: 'help',
+    description: 'Lists all available bot commands and their usage.',
+  },
 ];
 
 const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
