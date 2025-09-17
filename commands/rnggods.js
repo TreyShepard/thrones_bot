@@ -29,7 +29,9 @@ module.exports = {
       "Outlook not so good.",
       "You will go extremely dry.",
       "No, but someone else will.",
-      "Nope, you've used up all of your RNG."
+      "Nope, you've used up all of your RNG.",
+      "Nope, you're too bad at the game.",
+      "Yes, you're the 🐐."
     ];
 
     const question = interaction.options.getString("question");
