@@ -31,7 +31,7 @@ module.exports = {
       "Nope, you're too bad at the game.",
       "Yes, you're the 🐐."
     ];
-
+    
     const question = interaction.options.getString("question");
     const answer = answers[Math.floor(Math.random() * answers.length)];
 
