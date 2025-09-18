@@ -23,6 +23,7 @@ module.exports = {
           "Please see the attached screenshots for the advised plugin setups.",
         files: [
           path.join(__dirname, '../assets/discordCollectionLogger.png'),
+          path.join(__dirname, '../assets/discordLootLogger.png'),
           path.join(__dirname, '../assets/xpUpdater.png')
         ]
       });
