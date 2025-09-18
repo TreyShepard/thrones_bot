@@ -13,6 +13,9 @@ Usage: \`/enabledrops\`
 
 </rnggods:> — Ask the RNG gods a yes or no question.  
 Usage: \`/rnggods question:<your question>\`
+
+</setup:> — Sends you Runelite plugin instructions via DM.  
+Usage: \`/setup\`
     `;
 
     await interaction.reply({ content: helpText, flags: 1 << 6 });

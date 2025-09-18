@@ -62,6 +62,10 @@ const commands = [
     name: 'help',
     description: 'Lists all available bot commands and their usage.',
   },
+  {
+  name: 'setup',
+  description: 'Sends you Runelite plugin instructions via DM.',
+  }
 ];
 
 const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
