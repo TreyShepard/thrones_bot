@@ -111,10 +111,10 @@ module.exports = {
   async execute(interaction) {
     const medals = ["🥇", "🥈", "🥉", "🏅"];
     const mode = interaction.options.getString('mode');
-    const username = interaction.user.username;
+    const userId = interaction.user.id;
 
     // Special case for Papalotee
-    if (username === 'papalote4465') {
+    if (userId === '553414979177414694') {
       await interaction.reply("What a surprise, Papalotee tried the bingochamps command. He sees a bingo tile, complains, then goes there and spoons it. That fker.");
       return;
     }
