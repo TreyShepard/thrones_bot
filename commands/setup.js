@@ -18,6 +18,7 @@ module.exports = {
           "1. Discord Collection Logger (see <#1282421548074012784>)\n" +
           `   - Webhook: ${COLLECTION_WEBHOOK}\n` +
           "2. Discord Loot Logger (see <#1282421548074012784>)\n" +
+          `   - Loot Value = 3,000,000\n` +
           `   - Webhook: ${COLLECTION_WEBHOOK}\n` +
           "3. XP Updater (used for Competition tracking)\n\n" +
           "Please see the attached screenshots for the advised plugin setups.",
