@@ -72,6 +72,11 @@ client.on('interactionCreate', async interaction => {
   }
 });
 
+// Sets activity
+client.user.setActivity({
+  name: 'Use /help for commands!'
+});
+
 // Login to Discord using the bot token from environment variables (in .env file)
 // This establishes the connection and brings the bot online
 client.login(process.env.DISCORD_TOKEN);
