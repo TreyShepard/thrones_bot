@@ -73,9 +73,11 @@ client.on('interactionCreate', async interaction => {
 });
 
 // Sets activity
-client.user.setActivity({
-  name: 'Use /help for commands!'
+client.once('ready', () => {
+  client.user.setActivity('Use /help for commands!', { type: 'WATCHING' });
+  console.log(`Logged in as ${client.user.tag} and activity set!`);
 });
+
 
 // Login to Discord using the bot token from environment variables (in .env file)
 // This establishes the connection and brings the bot online
