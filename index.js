@@ -73,7 +73,7 @@ client.on('interactionCreate', async interaction => {
 });
 
 // Sets activity
-client.once('ready', () => {
+client.once('clientReady', () => {
   client.user.setActivity('Use /help for commands!', { type: 'WATCHING' });
   console.log(`Logged in as ${client.user.tag} and activity set!`);
 });
