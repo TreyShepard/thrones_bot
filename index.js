@@ -7,7 +7,8 @@
 // Load environment variables from .env file (for storing sensitive info)
 require('dotenv').config();
 
-const { Client, GatewayIntentBits, Collection, Partials } = require('discord.js');
+const { Client, GatewayIntentBits, Collection, Partials, ActivityType, Activity } = require('discord.js');
+
 const fs = require('fs'); 
 const path = require('path');
 
@@ -72,12 +73,10 @@ client.on('interactionCreate', async interaction => {
   }
 });
 
-// Sets activity
-client.once('clientReady', () => {
-  client.user.setActivity('Use /help for commands!', { type: 'WATCHING' });
-  console.log(`Logged in as ${client.user.tag} and activity set!`);
+client.on('ready', () => {
+    client.user.setPresence({ activities: [{ name: 'Use /help for commands!', type: ActivityType.Custom }] });
+    console.log(`Logged in as ${client.user.tag} and activity set!`);
 });
-
 
 // Login to Discord using the bot token from environment variables (in .env file)
 // This establishes the connection and brings the bot online
