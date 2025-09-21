@@ -65,7 +65,25 @@ const commands = [
   {
   name: 'setup',
   description: 'Sends you Runelite plugin instructions via DM.',
-  }
+  },
+  {
+  name: 'killcount',
+  description: 'Get a player\'s killcount for a specific boss.',
+  options: [
+    {
+      name: 'playername',
+      description: 'The player\'s RuneScape name',
+      type: 3, // STRING
+      required: true,
+    },
+    {
+      name: 'bossname',
+      description: 'The boss name (e.g. zulrah, vorkath, cerberus, etc.)',
+      type: 3, // STRING
+      required: true
+    }
+  ]
+},
 ];
 
 const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);

@@ -16,6 +16,9 @@ Usage: \`/rnggods question:<your question>\`
 
 </setup:> — Sends you Runelite plugin instructions via DM.  
 Usage: \`/setup\`
+
+</killcount:> — Get a player's killcount for a specific boss.  
+Usage: \`/killcount playername:<name> bossname:<boss>\`
     `;
 
     await interaction.reply({ content: helpText, flags: 1 << 6 });
