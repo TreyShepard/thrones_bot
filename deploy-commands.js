@@ -67,6 +67,18 @@ const commands = [
   description: 'Sends you Runelite plugin instructions via DM.',
   },
   {
+    name: 'promote',
+    description: 'Promote a user to Defender role by Discord user ID, announce, and DM the user.',
+    options: [
+      {
+        name: 'userid',
+        description: 'Discord user ID of the member to promote',
+        type: 3, // STRING
+        required: true,
+      },
+    ],
+  },
+  {
   name: 'killcount',
   description: 'Get a player\'s killcount for a specific boss.',
   options: [
