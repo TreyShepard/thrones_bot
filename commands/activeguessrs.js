@@ -66,6 +66,7 @@ module.exports = {
         // Check if user has guessed for this competition
         const userGuess = allGuesses.find(row => row[0] === competitionId && row[1] === discordUserId);
         const hasGuessed = userGuess ? '✅ You guessed' : '❌ Not guessed yet';
+        const guessValue = userGuess ? userGuess[2] : null;
 
         // Fetch submitter's nickname
         let submitterName = 'Unknown User';
@@ -84,6 +85,9 @@ module.exports = {
           message += `**Mode:** Price Is Right 📉\n`;
         }
         message += `**Status:** ${hasGuessed}\n`;
+        if (guessValue !== null) {
+          message += `**Your Guess:** ${guessValue}\n`;
+        }
         message += `━━━━━━━━━━━━━━━━━━━━━━━━\n\n`;
       }
 
