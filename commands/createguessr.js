@@ -20,6 +20,16 @@ module.exports = {
   ],
 
   async execute(interaction) {
+    const allowedChannelId = '1441455563631497368';
+    
+    if (interaction.channelId !== allowedChannelId) {
+      await interaction.reply({ 
+        content: `❌ This command can only be used in <#${allowedChannelId}>`, 
+        ephemeral: true 
+      });
+      return;
+    }
+
     await interaction.deferReply();
 
     const question = interaction.options.getString('question');
