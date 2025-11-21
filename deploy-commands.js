@@ -154,6 +154,10 @@ const commands = [
     name: 'guessrleaderboard',
     description: 'Display the top 3 ThronesGuessr winners.',
   },
+  {
+    name: 'activeguessrs',
+    description: 'Display all active ThronesGuessr competitions.',
+  },
 ];
 
 const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
