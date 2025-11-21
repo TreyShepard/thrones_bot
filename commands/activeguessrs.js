@@ -30,7 +30,7 @@ module.exports = {
       // Get all competitions
       const competitionsResponse = await sheets.spreadsheets.values.get({
         spreadsheetId,
-        range: 'competitions!A:G',
+        range: 'competitions!A:H',
       });
 
       const competitions = competitionsResponse.data.values || [];
@@ -61,6 +61,7 @@ module.exports = {
         const submittedDiscordUserId = comp[1];
         const question = comp[3];
         const priceIsRight = comp[4] === 'TRUE';
+        const startNumber = comp[7] || 'N/A';
 
         // Check if user has guessed for this competition
         const userGuess = allGuesses.find(row => row[0] === competitionId && row[1] === discordUserId);
@@ -78,6 +79,7 @@ module.exports = {
         message += `**Competition ID:** \`${competitionId}\`\n`;
         message += `**Created by:** ${submitterName}\n`;
         message += `**Question:** ${question}\n`;
+        message += `**Start Number:** ${startNumber}\n`;
         if (priceIsRight) {
           message += `**Mode:** Price Is Right 📉\n`;
         }
