@@ -107,6 +107,12 @@ const commands = [
         required: true,
       },
       {
+        name: 'startnumber',
+        description: 'The starting number for the competition',
+        type: 10, // NUMBER
+        required: true,
+      },
+      {
         name: 'priceisright',
         description: 'Use Price Is Right rules?',
         type: 5, // BOOLEAN

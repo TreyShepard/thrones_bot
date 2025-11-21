@@ -56,7 +56,7 @@ module.exports = {
       // Check if the competition exists
       const competitionsResponse = await sheets.spreadsheets.values.get({
         spreadsheetId,
-        range: 'competitions!A:F',
+        range: 'competitions!A:H',
       });
 
       const competitions = competitionsResponse.data.values || [];
@@ -70,11 +70,18 @@ module.exports = {
 
       const competitionCreatorId = competitionRow[1];
       const competitionQuestion = competitionRow[3];
+      const startNumber = parseFloat(competitionRow[7]);
 
       // Check if competition is already completed
       if (competitionRow[2] === 'TRUE') {
         await interaction.deleteReply();
         await interaction.followUp({ content: '❌ This competition has already been completed.', ephemeral: true });
+        return;
+      }
+
+      // Check if guess is greater than start number
+      if (!isNaN(startNumber) && guess <= startNumber) {
+        await interaction.editReply({ content: `❌ Your guess must be greater than the starting number (${startNumber}).` });
         return;
       }
 

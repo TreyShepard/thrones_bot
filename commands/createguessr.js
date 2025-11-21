@@ -12,6 +12,12 @@ module.exports = {
       required: true,
     },
     {
+      name: 'startnumber',
+      description: 'The starting number for the competition',
+      type: 10, // NUMBER
+      required: true,
+    },
+    {
       name: 'priceisright',
       description: 'Use Price Is Right rules?',
       type: 5, // BOOLEAN
@@ -33,6 +39,7 @@ module.exports = {
     await interaction.deferReply();
 
     const question = interaction.options.getString('question');
+    const startNumber = interaction.options.getNumber('startnumber');
     const priceIsRight = interaction.options.getBoolean('priceisright') ?? false;
     const submittedDiscordUserId = interaction.user.id;
 
@@ -60,7 +67,7 @@ module.exports = {
     }
 
     // competitions sheet headers:
-    // competitionId | submittedDiscordUserId | isCompleted | question | priceIsRight | winnerDiscordUserId
+    // competitionId | submittedDiscordUserId | isCompleted | question | priceIsRight | winnerDiscordUserId | finalNumber | startNumber
     const row = [
       competitionId,
       submittedDiscordUserId,
@@ -68,19 +75,21 @@ module.exports = {
       question,
       priceIsRight ? 'TRUE' : 'FALSE',
       '',
+      '',
+      startNumber,
     ];
 
     try {
       await sheets.spreadsheets.values.append({
         spreadsheetId,
-        range: 'competitions!A:F',
+        range: 'competitions!A:H',
         valueInputOption: 'USER_ENTERED',
         insertDataOption: 'INSERT_ROWS',
         requestBody: { values: [row] },
       });
 
       await interaction.editReply({ 
-        content: `🎯 **New ThronesGuessr Competition Created!**\n\n**Question:** ${question}\n**Competition ID:** \`${competitionId}\`\n**Created by:** ${interaction.member.displayName}${priceIsRight ? '\n**Rules:** Price Is Right mode enabled' : ''}` 
+        content: `🎯 **New ThronesGuessr Competition Created!**\n\n**Question:** ${question}\n**Start Number:** ${startNumber}\n**Competition ID:** \`${competitionId}\`\n**Created by:** ${interaction.member.displayName}${priceIsRight ? '\n**Rules:** Price Is Right mode enabled' : ''}` 
       });
     } catch (err) {
       console.error('Error appending to sheet:', err);
