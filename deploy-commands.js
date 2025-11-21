@@ -46,7 +46,7 @@ const commands = [
     name: 'enabledrops',
     description: 'Enables drops for the server.',
   },
-    {
+  {
     name: 'rnggods',
     description: 'Ask the RNG gods a yes or no question.',
     options: [
@@ -63,8 +63,8 @@ const commands = [
     description: 'Lists all available bot commands and their usage.',
   },
   {
-  name: 'setup',
-  description: 'Sends you Runelite plugin instructions via DM.',
+    name: 'setup',
+    description: 'Sends you Runelite plugin instructions via DM.',
   },
   {
     name: 'promote',
@@ -79,23 +79,81 @@ const commands = [
     ],
   },
   {
-  name: 'killcount',
-  description: 'Get a player\'s killcount for a specific boss.',
-  options: [
-    {
-      name: 'playername',
-      description: 'The player\'s RuneScape name',
-      type: 3, // STRING
-      required: true,
-    },
-    {
-      name: 'bossname',
-      description: 'The boss name (e.g. zulrah, vorkath, cerberus, etc.)',
-      type: 3, // STRING
-      required: true
-    }
-  ]
-},
+    name: 'killcount',
+    description: 'Get a player\'s killcount for a specific boss.',
+    options: [
+      {
+        name: 'playername',
+        description: 'The player\'s RuneScape name',
+        type: 3, // STRING
+        required: true,
+      },
+      {
+        name: 'bossname',
+        description: 'The boss name (e.g. zulrah, vorkath, cerberus, etc.)',
+        type: 3, // STRING
+        required: true,
+      }
+    ],
+  },
+  {
+    name: 'createguessr',
+    description: 'Create a new Guessr competition.',
+    options: [
+      {
+        name: 'question',
+        description: 'The question for people to guess',
+        type: 3, // STRING
+        required: true,
+      },
+      {
+        name: 'priceisright',
+        description: 'Use Price Is Right rules?',
+        type: 5, // BOOLEAN
+        required: false,
+      },
+    ],
+  },
+  {
+    name: 'guessrguess',
+    description: 'Submit your guess for a ThronesGuessr competition.',
+    options: [
+      {
+        name: 'competitionid',
+        description: 'The competition ID to guess for',
+        type: 3, // STRING
+        required: true,
+      },
+      {
+        name: 'guess',
+        description: 'Your numeric guess',
+        type: 10, // NUMBER
+        required: true,
+      },
+    ],
+  },
+  {
+    name: 'completeguessr',
+    description: 'Complete a Guessr competition and determine the winner.',
+    options: [
+      {
+        name: 'competitionid',
+        description: 'The competition ID to complete',
+        type: 3, // STRING
+        required: true,
+      },
+      {
+        name: 'finalnumber',
+        description: 'The final/actual number',
+        type: 10, // NUMBER
+        required: true,
+      },
+    ],
+  },
+  {
+    name: 'guessrleaderboard',
+    description: 'Display the top 3 ThronesGuessr winners.',
+  },
 ];
 
 const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
