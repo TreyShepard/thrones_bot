@@ -16,7 +16,7 @@ const teams = [
       { name: "Winkelburge3", points: 13.2 },
       { name: "M U M B I/Lil numbs", points: 13 },
       { name: "Caring", points: 12.7 },
-      { name: "Freezy", points: 11 S},
+      { name: "Freezy", points: 11 },
       { name: "Kaosdj2", points: 7.2 },
       { name: "Mago_0308", points: 6 },
       { name: "Sneak", points: 2.3 },
