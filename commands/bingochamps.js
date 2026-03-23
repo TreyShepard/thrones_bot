@@ -5,103 +5,91 @@
 // - "all": Full details of each team and members
 const teams = [
   {
-    name: "Gum Drop Addicts",
-    total: 253.0,
+    name: "Winkelburglers",
+    total: 211,
     members: [
-      { name: "Ratrero", points: 44.9 },
-      { name: "mhe00", points: 36.5 },
-      { name: "Blizz", points: 20.5 },
-      { name: "lePijon / Lil Pij", points: 19.9 },
-      { name: "Forgotten", points: 17.7 },
-      { name: "Rupea", points: 15.8 },
-      { name: "Bringvasline", points: 14.5 },
-      { name: "Caring / Creating", points: 13.6 },
-      { name: "rockdaddy96", points: 12.5 },
-      { name: "Detrovi Sr", points: 10.3 },
-      { name: "Hansi Kursch", points: 4.4 },
-      { name: "DumbKoolaid", points: 0.4 },
+      { name: "mhe00", points: 30.5 },
+      { name: "NotRetro", points: 20.9 },
+      { name: "Shindo main/shindoryu", points: 16 },
+      { name: "Giga Goober", points: 15.7 },
+      { name: "FucTurtles", points: 14 },
+      { name: "Winkelburge3", points: 13.2 },
+      { name: "M U M B I/Lil numbs", points: 13 },
+      { name: "Caring", points: 12.7 },
+      { name: "Freezy", points: 11 },
+      { name: "Kaosdj2", points: 7.2 },
+      { name: "Mago_0308", points: 6 },
+      { name: "Sneak", points: 2.3 },
+      { name: "Abitwent Tin", points: 0.3 },
+      { name: "Bringvasline", points: 0 },
     ],
   },
   {
-    name: "Reinbeers",
-    total: 226.0,
+    name: "Konars Crevice",
+    total: 231,
     members: [
-      { name: "Shindo main/ shindoryu", points: 38.0 },
-      { name: "bacoudi", points: 31.2 },
-      { name: "lil bit gay", points: 20.4 },
-      { name: "Clear it", points: 19.4 },
-      { name: "Rancie", points: 17.4 },
-      { name: "Asamba", points: 15.0 },
-      { name: "finding dory", points: 11.4 },
-      { name: "Sneak", points: 10.5 },
-      { name: "Boujee Tamer", points: 10.0 },
-      { name: "Chawnee", points: 6.0 },
-      { name: "EvaZiioN", points: 5.7 },
-      { name: "Koomar / Caitlin Rice", points: 3.0 },
-      { name: "Yadrans", points: 0.0 },
+      { name: "Forgotmystam", points: 31 },
+      { name: "Slizzle", points: 25.2 },
+      { name: "Rancie", points: 18.2 },
+      { name: "Set h", points: 16 },
+      { name: "UncleTevis", points: 15.2 },
+      { name: "King Tut 16", points: 13.5 },
+      { name: "Bingo HR", points: 11 },
+      { name: "EvaZlioN", points: 10.6 },
+      { name: "Bacodie", points: 10.2 },
+      { name: "Blu Ocean", points: 10.1 },
+      { name: "Rex Soloman", points: 10 },
+      { name: "Forgotten", points: 6 },
+      { name: "Lil Myth Myth", points: 3 },
+      { name: "Rupea", points: 3 },
     ],
   },
   {
-    name: "Double Stuffed",
-    total: 173.5,
+    name: "Blombussies",
+    total: 123.5,
     members: [
-      { name: "Papalotee", points: 27.9 },
-      { name: "ThePionero", points: 27.23 },
-      { name: "Giga Goober/Jiji Scrubs", points: 26.23 },
-      { name: "Kaosdj2", points: 25.4 },
-      { name: "Pretty Lost", points: 18.0 },
-      { name: "ElIronJota", points: 12.33 },
-      { name: "naiG", points: 6.9 },
-      { name: "Gazpa", points: 4.67 },
-      { name: "Mebigbob", points: 3.33 },
-      { name: "LaVacaLeech", points: 1.5 },
-      { name: "Rex Soloman", points: 0.0 },
-      { name: "Next Lucifer", points: 0.0 },
-      { name: "Chew", points: 0.0 },
+      { name: "Don Ratrero", points: 21.6 },
+      { name: "Blizz", points: 10.1 },
+      { name: "Blombo", points: 10.1 },
+      { name: "Wise Ope", points: 10 },
+      { name: "Smartkoolaid", points: 10 },
+      { name: "Detrovi Sr", points: 8.5 },
+      { name: "lePijon/Lil Pij", points: 8.5 },
+      { name: "Asamba", points: 8.3 },
+      { name: "nais", points: 7 },
+      { name: "lil bit gay", points: 3.5 },
+      { name: "jar expert", points: 2.5 },
+      { name: "YO0 Jake", points: 2.5 },
+      { name: "Energy Bolt", points: 1.3 },
+      { name: "Darktyranno", points: 3 }
     ],
   },
   {
-    name: "Boats and ho-ho-hos",
-    total: 172.0,
+    name: "PB Gang",
+    total: 168,
     members: [
-      { name: "blu ocean", points: 32.4 },
-      { name: "Slizzle", points: 23.5 },
-      { name: "Winkelburge2", points: 12.6 },
-      { name: "Ru Ez", points: 11.7 },
-      { name: "Freezy", points: 11.3 },
-      { name: "Insulinfein", points: 10.0 },
-      { name: "jar expert", points: 9.7 },
-      { name: "Behka", points: 8.4 },
-      { name: "Wise Ope", points: 8.0 },
-      { name: "Energy Bolt", points: 7.4 },
-      { name: "M u m b i", points: 6.4 },
-      { name: "wheei chair", points: 4.3 },
-    ],
-  },
-  {
-    name: "Whorcas",
-    total: 140.3,
-    members: [
-      { name: "Forgotmystam", points: 18.5 },
-      { name: "Avg Rev", points: 17.0 },
-      { name: "Darktyranno & BroIsThatU", points: 16.0 },
-      { name: "TevisCrevice", points: 11.5 },
-      { name: "Blombo", points: 11.4 },
-      { name: "Taercy", points: 10.4 },
-      { name: "King Tut 16", points: 9.7 },
-      { name: "Fordham", points: 9.0 },
-      { name: "MajesticOrca", points: 8.0 },
-      { name: "topzishere", points: 6.7 },
-      { name: "LunastusFE", points: 5.0 },
-      { name: "Zastrien", points: 4.0 },
-      { name: "Lil Myth", points: 0.0 },
+      { name: "GiM Pionero", points: 22.6 },
+      { name: "ElIronJota", points: 21.5 },
+      { name: "Tz-Tok-Evil", points: 21.2 },
+      { name: "topzishere", points: 19.5 },
+      { name: "JSSchonberg", points: 15 },
+      { name: "skibiron", points: 12 },
+      { name: "Chawn", points: 8 },
+      { name: "Clear it", points: 5.7 },
+      { name: "Taercy", points: 5 },
+      { name: "Gazpa", points: 4.3 },
+      { name: "RatGirlRemi", points: 3 },
+      { name: "Finding Dory", points: 2 },
+      { name: "LaVacaleech", points: 1 },
+      { name: "Zero Lootz", points: 0 },
+      { name: "Zastrien", points: 0 },
     ],
   },
 ];
 
 module.exports = {
   name: "bingochamps",
-  description: "Displays Thrones VI Bingo results.",
+  description: "Displays Thrones VII Bingo results.",
   options: [
     {
       name: 'mode',
@@ -122,7 +110,7 @@ module.exports = {
     if (mode === "info") {
       // Info argument: return the tracking sheet URL
       await interaction.reply(
-        "Thrones 6 Bingo Tracking Sheet: https://docs.google.com/spreadsheets/d/1QuySPR9U3u4YfxnYOZF_37CPsn4F3O-vw3OiCGC-qZU"
+        "Thrones 6 Bingo Tracking Sheet: https://docs.google.com/spreadsheets/d/1AnBYOhfsACDoJLdUzYsH8sbcyq39J1i9ac4zIedH0hs"
       );
       return;
     }
@@ -130,7 +118,7 @@ module.exports = {
     if (mode === "all") {
       // Full details: send each team as a separate message
       const sorted = [...teams].sort((a, b) => b.total - a.total);
-      await interaction.reply("**Thrones VI Bingo - Full Standings**");
+      await interaction.reply("**Thrones VII Bingo - Full Standings**");
       for (let idx = 0; idx < sorted.length; idx++) {
         const team = sorted[idx];
         const medal = medals[idx] || "🏅";
@@ -148,7 +136,7 @@ module.exports = {
     }
 
     // Summary with Markdown and emojis
-    let reply = `**Thrones VI Bingo - Team Standings**\n\n`;
+    let reply = `**Thrones VII Bingo - Team Standings**\n\n`;
     const sorted = [...teams].sort((a, b) => b.total - a.total);
     sorted.forEach((team, idx) => {
       const medal = medals[idx] || "🏅";
