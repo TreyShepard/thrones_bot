@@ -40,7 +40,7 @@ const teams = [
       { name: "Blu Ocean", points: 10.1 },
       { name: "Rex Soloman", points: 10 },
       { name: "Forgotten", points: 6 },
-      { name: "Lil Myth Myth", points: 3 },
+      { name: "Lil Myth", points: 3 },
       { name: "Rupea", points: 3 },
     ],
   },
