@@ -49,7 +49,7 @@ const teams = [
     total: 123.5,
     members: [
       { name: "Don Ratrero", points: 21.6 },
-      { name: "Blizz", points: 10.1 },
+      { name: "Boujee Tamer", points: 10.1 },
       { name: "Blombo", points: 10.1 },
       { name: "Wise Ope", points: 10 },
       { name: "Smartkoolaid", points: 10 },
