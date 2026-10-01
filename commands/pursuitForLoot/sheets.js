@@ -64,18 +64,30 @@ async function getPursuitState() {
 
   const itemsResponse = await sheets.spreadsheets.values.get({
     spreadsheetId,
-    range: `${quoteTabTitle(itemsTab)}!A1:C`,
+    range: `${quoteTabTitle(itemsTab)}!A1:E`,
   });
   const itemRows = itemsResponse.data.values || [];
   if (!itemRows.length) throw new Error('Items tab is empty or unavailable.');
 
-  const itemColumns = getColumnIndexes(itemRows[0], ['ItemName', 'Availability', 'IsActive'], 'Items');
+  const itemColumns = getColumnIndexes(
+    itemRows[0],
+    ['ItemName', 'Availability', 'IsActive', 'IsGeneric', 'WikiLink'],
+    'Items'
+  );
   const items = itemRows.slice(1).map((row, index) => ({
     name: String(row[itemColumns.get('itemname')] || '').trim(),
     available: parseBoolean(row[itemColumns.get('availability')], `Items row ${index + 2} Availability`),
     isActive: parseBoolean(row[itemColumns.get('isactive')], `Items row ${index + 2} IsActive`),
+    isGeneric: parseBoolean(row[itemColumns.get('isgeneric')], `Items row ${index + 2} IsGeneric`),
+    wikiLink: String(row[itemColumns.get('wikilink')] || '').trim(),
     rowNumber: index + 2,
   })).filter(item => item.name);
+
+  for (const item of items) {
+    if (item.isGeneric && !item.wikiLink) {
+      throw new Error(`Items row ${item.rowNumber} is generic but has no WikiLink.`);
+    }
+  }
 
   return { active: true, sheets, spreadsheetId, itemsTab, items };
 }

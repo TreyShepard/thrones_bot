@@ -74,13 +74,15 @@ module.exports = {
       await updateItemStates(state.sheets, state.spreadsheetId, state.itemsTab, itemChanges);
 
       let crownAccessTransferred = false;
+      let alreadyCrownHolder = false;
       try {
         const guild = interaction.guild;
         const crownRole = await guild.roles.fetch(CROWN_ROLE_ID);
         if (!crownRole) throw new Error(`Crown role ${CROWN_ROLE_ID} was not found.`);
 
-        const submitter = await guild.members.fetch(interaction.user.id);
         await guild.members.fetch();
+        const submitter = await guild.members.fetch(interaction.user.id);
+        alreadyCrownHolder = submitter.roles.cache.has(crownRole.id);
         const previousHolders = crownRole.members.filter(member => member.id !== submitter.id);
         await Promise.all(previousHolders.map(member => member.roles.remove(crownRole)));
         await submitter.roles.add(crownRole);
@@ -88,7 +90,9 @@ module.exports = {
 
         try {
           await submitter.user.send(
-            `You are now the only person with access to <#${CROWN_LORE_CHANNEL_ID}>. Please leave a message or some lore about how you earned the crown for future holders.`
+            alreadyCrownHolder
+              ? `You still have exclusive access to <#${CROWN_LORE_CHANNEL_ID}>. Please leave another message about how you kept the crown for future holders.`
+              : `You are now the only person with access to <#${CROWN_LORE_CHANNEL_ID}>. Please leave a message or some lore about how you earned the crown for future holders.`
           );
         } catch (error) {
           console.error('Failed to DM Pursuit for Loot crown holder:', error);
@@ -97,10 +101,12 @@ module.exports = {
         console.error('Failed to transfer Pursuit for Loot crown role:', error);
       }
 
-      await informationChannel.send(await createCrownAnnouncement(interaction.user.id, currentItem));
+      await informationChannel.send(
+        await createCrownAnnouncement(interaction.user.id, currentItem, alreadyCrownHolder)
+      );
 
       if (nextItem) {
-        await informationChannel.send(await createNextItemAnnouncement(nextItem.name));
+        await informationChannel.send(await createNextItemAnnouncement(nextItem));
         const handoffStatus = crownAccessTransferred ? '' : ' Crown role access could not be transferred; please contact an administrator.';
         return interaction.editReply(`Submission posted. **${currentItem.name}** is complete; **${nextItem.name}** is now active.${handoffStatus}`);
       }

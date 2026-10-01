@@ -35,44 +35,53 @@ async function getWikiItemDetails(itemName) {
   }
 }
 
-async function createStartAnnouncement(itemName) {
-  const wiki = await getWikiItemDetails(itemName);
+async function getItemWikiDetails(item) {
+  if (item.isGeneric) return { pageUrl: item.wikiLink, imageUrl: null };
+  return getWikiItemDetails(item.name);
+}
+
+async function createStartAnnouncement(item) {
+  const wiki = await getItemWikiDetails(item);
   const embed = new EmbedBuilder()
     .setColor(GOLD)
     .setTitle('Pursuit for Loot')
     .setURL(wiki.pageUrl)
-    .setDescription(`The hunt is on. The current target is **[${itemName}](${wiki.pageUrl})**.`)
+    .setDescription(`The hunt is on. The current target is **[${item.name}](${wiki.pageUrl})**.`)
     .setFooter({ text: 'A new pursuit begins' });
 
   if (wiki.imageUrl) embed.setThumbnail(wiki.imageUrl);
   return { embeds: [embed] };
 }
 
-async function createCrownAnnouncement(winnerId, completedItem) {
-  const completedWiki = await getWikiItemDetails(completedItem.name);
+async function createCrownAnnouncement(winnerId, completedItem, alreadyCrownHolder = false) {
+  const completedWiki = await getItemWikiDetails(completedItem);
   const embed = new EmbedBuilder()
     .setColor(GOLD)
-    .setTitle('The Crown Has Changed Hands')
+    .setTitle(alreadyCrownHolder ? 'The Crown Remains' : 'The Crown Has Changed Hands')
     .setURL(completedWiki.pageUrl)
-    .setDescription(`**[${completedItem.name}](${completedWiki.pageUrl})** has been claimed. The crown now belongs to <@${winnerId}>.`)
+    .setDescription(alreadyCrownHolder
+      ? `**[${completedItem.name}](${completedWiki.pageUrl})** has been claimed. <@${winnerId}> still holds the crown.`
+      : `**[${completedItem.name}](${completedWiki.pageUrl})** has been claimed. The crown now belongs to <@${winnerId}>.`)
     .setFooter({ text: 'Pursuit for Loot' });
 
   if (completedWiki.imageUrl) embed.setThumbnail(completedWiki.imageUrl);
 
   return {
-    content: `👑 <@${winnerId}> obtained **${completedItem.name}** and now holds the crown!`,
+    content: alreadyCrownHolder
+      ? `👑 <@${winnerId}> obtained **${completedItem.name}** and still holds the crown!`
+      : `👑 <@${winnerId}> obtained **${completedItem.name}** and now holds the crown!`,
     embeds: [embed],
     allowedMentions: { users: [winnerId] },
   };
 }
 
-async function createNextItemAnnouncement(itemName) {
-  const wiki = await getWikiItemDetails(itemName);
+async function createNextItemAnnouncement(item) {
+  const wiki = await getItemWikiDetails(item);
   const embed = new EmbedBuilder()
     .setColor(GOLD)
     .setTitle('A New Pursuit Begins')
     .setURL(wiki.pageUrl)
-    .setDescription(`The next target is **[${itemName}](${wiki.pageUrl})**.`)
+    .setDescription(`The next target is **[${item.name}](${wiki.pageUrl})**.`)
     .setFooter({ text: 'Pursuit for Loot' });
 
   if (wiki.imageUrl) embed.setThumbnail(wiki.imageUrl);

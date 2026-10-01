@@ -31,7 +31,7 @@ module.exports = {
       const item = state.items[Math.floor(Math.random() * state.items.length)];
       await updateItemStates(state.sheets, state.spreadsheetId, state.itemsTab, [{ rowNumber: item.rowNumber, isActive: true }]);
       try {
-        await informationChannel.send(await createStartAnnouncement(item.name));
+        await informationChannel.send(await createStartAnnouncement(item));
       } catch (sendError) {
         try {
           await updateItemStates(state.sheets, state.spreadsheetId, state.itemsTab, [{ rowNumber: item.rowNumber, isActive: false }]);
