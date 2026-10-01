@@ -1,4 +1,4 @@
-const { QUEENS_ROLE_ID, SMALL_COUNCIL_ROLE_ID, DEFENDER_ROLE_ID } = require('../configs/roles');
+const { QUEENS_ROLE_ID, SMALLCOUNCIL_ROLE_ID, DEFENDER_ROLE_ID, QUEENSGUARD_ROLE_ID } = require('../configs/roles');
 
 module.exports = {
   name: "announce",
@@ -8,7 +8,8 @@ module.exports = {
     const member = interaction.member;
     if (
       !member.roles.cache.has(QUEENS_ROLE_ID) &&
-      !member.roles.cache.has(SMALL_COUNCIL_ROLE_ID)
+      !member.roles.cache.has(SMALLCOUNCIL_ROLE_ID) &&
+      !member.roles.cache.has(QUEENSGUARD_ROLE_ID)
     ) {
       return interaction.reply({ content: "You do not have permission to use this command.", flags: 1 << 6 });
     }

@@ -38,6 +38,20 @@ discord-bot/
 
    npm start
 
+## Pursuit for Loot Setup
+
+The bot uses the Google Sheets API service account configured by `GOOGLE_CLIENT_EMAIL` and `GOOGLE_PRIVATE_KEY` in `.env`. Enable the Google Sheets API in the Google Cloud project that owns the service account, then share the spreadsheet with the service-account email and grant Editor access. The service account must be able to read and edit the `Settings` and `Items` tabs.
+
+Set `P4L_GOOGLE_SHEET_ID` to the Pursuit for Loot spreadsheet ID, `P4L_INFORMATION_CHANNEL_ID` to the channel where the active item should be announced, and `P4L_SUBMISSIONS_CHANNEL_ID` to the channel where proof screenshots should be posted. The existing `GOOGLE_SHEET_ID` remains available for other bot features.
+
+The bot needs `View Channel` and `Send Messages` permissions in both configured channels.
+
+Pursuit announcements link item names to their OSRS Wiki pages and request thumbnails through the Wiki's MediaWiki `pageimages` API. If the API has no thumbnail or is unavailable, the announcement still includes the item page link.
+
+The `Settings` tab needs `Setting` and `Status` columns with an `Active` row. The `Items` tab needs `ItemName`, `Availability`, and `IsActive` columns. Use `TRUE` or `FALSE` for the two status columns.
+
+Run `node deploy-commands.js` after adding or changing the slash commands, then restart the bot.
+
 ## Adding the Bot to Your Server
 
 1. Go to https://discord.com/developers/applications
