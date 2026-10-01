@@ -164,6 +164,22 @@ const commands = [
     name: 'activeguessrs',
     description: 'Display all active ThronesGuessr competitions.',
   },
+  {
+    name: 'p4lstart',
+    description: 'Choose and announce the next Pursuit for Loot item.',
+  },
+  {
+    name: 'p4lsubmit',
+    description: 'Submit a screenshot for the active Pursuit for Loot item.',
+    options: [
+      {
+        name: 'screenshot',
+        description: 'Screenshot proving the item was obtained',
+        type: 11, // ATTACHMENT
+        required: true,
+      },
+    ],
+  },
 ];
 
 const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);

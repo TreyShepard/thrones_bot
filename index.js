@@ -33,13 +33,21 @@ const client = new Client({
 // Commands will be injected into this client.commands collection
 client.commands = new Collection();
 
-// Load commands from the commands directory
-// Read all .js files from the commands folder and register them into the commands collection
-const commandFiles = fs.readdirSync(path.join(__dirname, 'commands')).filter(file => file.endsWith('.js'));
+// Load command modules from the commands directory and its feature folders
+function findCommandFiles(directory) {
+  return fs.readdirSync(directory, { withFileTypes: true }).flatMap(entry => {
+    const entryPath = path.join(directory, entry.name);
+    if (entry.isDirectory()) return findCommandFiles(entryPath);
+    return entry.isFile() && entry.name.endsWith('.js') ? [entryPath] : [];
+  });
+}
+
+const commandFiles = findCommandFiles(path.join(__dirname, 'commands'));
 for (const file of commandFiles) {
-  const command = require(`./commands/${file}`);
-  // Store each command in the collection using its name as the key
-  client.commands.set(command.name, command);
+  const command = require(file);
+  if (command.name && typeof command.execute === 'function') {
+    client.commands.set(command.name, command);
+  }
 }
 
 // Load events from the events directory
