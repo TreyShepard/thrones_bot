@@ -43,7 +43,12 @@ module.exports = {
       }
 
       const currentItem = activeItems[0];
-      const nextItem = state.items.find(item => item.available && item.rowNumber !== currentItem.rowNumber);
+      const availableItems = state.items.filter(
+        item => item.available && item.rowNumber !== currentItem.rowNumber
+      );
+      const nextItem = availableItems.length
+        ? availableItems[Math.floor(Math.random() * availableItems.length)]
+        : undefined;
       const submissionsChannel = await fetchTextChannel(
         interaction.client,
         getSubmissionsChannelId(),
